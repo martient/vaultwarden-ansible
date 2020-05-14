@@ -1,0 +1,14 @@
+all:
+    vars:
+        ansible_python_interpreter: /usr/bin/python3
+    hosts:
+        node1:
+            ansible_host: RASP_LOCAL_IP
+            ansible_user: pi
+    children:
+        base:
+            hosts:
+                node1
+        bitwarden:
+            hosts:
+                node1

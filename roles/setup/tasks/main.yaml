@@ -1,0 +1,36 @@
+---
+- name: "Update cache"
+  apt:
+    update_cache: yes
+  become: yes
+
+- name: "Dowmload docker script"
+  get_url:
+    url: https://get.docker.com
+    dest: /tmp/docker-setup.sh
+    mode: 0755
+
+- name: "Install docker"
+  shell: /tmp/docker-setup.sh
+
+- name: "Delete docker script"
+  file:
+    path: /tmp/docker-setup.sh
+    state: absent
+
+- name: "Using docker as a non-root user"
+  shell: usermod -aG docker pi
+  become: yes
+
+- name: "Docker test"
+  docker_container:
+    name: "hello-world"
+    image: hello-world
+
+- name: "Prune everything"
+  docker_prune:
+    containers: yes
+    images: yes
+    networks: yes
+    volumes: yes
+    builder_cache: yes

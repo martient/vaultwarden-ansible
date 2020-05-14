@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  bitwarden:
+    image: bitwardenrs/server:raspberry
+    restart: always
+    volumes:
+      - ./bw-data:/data
+    environment:
+      WEBSOCKET_ENABLED: 'true' # Required to use websockets
+      SIGNUPS_ALLOWED: 'true'   # set to false to disable signups
+      ADMIN_TOKEN: "DEFINE-YOUR-PERSONNAL-ADMIN-TOKEN"
+      DOMAIN: "https://YOUR-DOMAIN-OR-SUB-DOMAIN"
+
+  caddy:
+    image: detroitenglish/docker-caddy-rpi:latest
+    restart: always
+    volumes:
+      - ./caddy-data/config/Caddyfile:/etc/Caddyfile:ro
+      - caddycerts:/root/.caddy
+    ports:
+      - 80:80 # needed for Let's Encrypt
+      - 443:443
+    environment:
+      ACME_AGREE: "true" # agree to Let's Encrypt Subscriber Agreement
+      DOMAIN: "YOUR-DOMAIN-OR-SUB-DOMAIN" # CHANGE THIS! Used for Auto Let's Encrypt SSL
+      EMAIL: "YOUR-EMAIL-FOR-KNOW-WHEN-SSL-IS-RELOAD"  # CHANGE THIS! Optional, provided to Let's Encrypt
+volumes:
+  caddycerts:

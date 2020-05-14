@@ -1,0 +1,24 @@
+---
+- name: "Copy docker-compose"
+  copy:
+    src: docker-compose.yaml
+    dest: .
+
+- name: "Copy bw-data"
+  copy:
+    src: bw-data
+    dest: .
+
+- name: "Copy caddy-data"
+  copy:
+    src: caddy-data
+    dest: .
+
+- name: "Tear down existing services"
+  docker_compose:
+    project_src: .
+    state: absent
+
+- name: "Create and start Bitwarden RS services"
+  docker_compose:
+    project_src: .

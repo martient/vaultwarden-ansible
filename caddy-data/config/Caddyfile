@@ -1,0 +1,27 @@
+{$DOMAIN} {
+    tls {$EMAIL}
+
+    header / {
+        # Enable HTTP Strict Transport Security (HSTS)
+        Strict-Transport-Security "max-age=31536000;"
+        # Enable cross-site filter (XSS) and tell browser to block detected attacks
+        X-XSS-Protection "1; mode=block"
+        # Disallow the site to be rendered within a frame (clickjacking protection)
+        X-Frame-Options "DENY"
+    }
+
+    # The negotiation endpoint is also proxied to Rocket
+    proxy /notifications/hub/negotiate bitwarden:80 {
+        transparent
+    }
+
+    # Notifications redirected to the websockets server
+    proxy /notifications/hub bitwarden:3012 {
+        websocket
+    }
+
+    # Proxy the Root directory to Rocket
+    proxy / bitwarden:80 {
+        transparent
+    }
+}

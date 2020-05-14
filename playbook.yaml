@@ -1,0 +1,11 @@
+- hosts: all
+  name: "Setup raspberry pi"
+  remote_user: pi
+  roles:
+    - setup
+
+- hosts: bitwarden
+  name: "Setup bitwarden"
+  become: yes
+  roles:
+    - bitwardenrs
