@@ -4,6 +4,8 @@
 ### Required
 
 * Ansible 2.9.7 or update
+* Domain or sub-domain acces (DNS)
+* PORTS 80 & 443 not used
 
 ### Before the playbook execution
 
@@ -40,23 +42,20 @@ all:
 
 #### docker-compose
 
-Open the file named 'docker-compose.yaml' and edit the line where '<---' is
+Open the file named '.env' and edit the line where '<---' is
  
 You have to edit for bitwarden
 ```
-    environment:
-      WEBSOCKET_ENABLED: 'true' # Required to use websockets
-      SIGNUPS_ALLOWED: 'true'   # set to false to disable signups
-      ADMIN_TOKEN: "DEFINE-YOUR-PERSONNAL-ADMIN-TOKEN" <---
-      DOMAIN: "https://YOUR-DOMAIN-OR-SUB-DOMAIN" <---
-```
+#Bitewardemrs
+WEBSOCKET_ENABLED=true
+SIGNUPS_ALLOWED=true
+ADMIN_TOKEN=DEFINE-YOUR-PERSONNAL-ADMIN-TOKEN <---
+DOMAIN_HTTPS=https://YOUR-DOMAIN-OR-SUB-DOMAIN <---
 
-You have to edit for caddy
-```
-    environment:
-      ACME_AGREE: "true" # agree to Let's Encrypt Subscriber Agreement
-      DOMAIN: "YOUR-DOMAIN-OR-SUB-DOMAIN" # CHANGE THIS! Used for Auto Let's Encrypt SSL <---
-      EMAIL: "YOUR-EMAIL-FOR-KNOW-WHEN-SSL-IS-RELOAD"  # CHANGE THIS! Optional, provided to Let's Encrypt <---
+#caddy
+ACME_AGREE=true
+DOMAIN=YOUR-DOMAIN-OR-SUB-DOMAIN <---
+EMAIL=YOUR-EMAIL-FOR-KNOW-WHEN-SSL-IS-RELOAD <---
 ```
 
 ### Deployment playbook to your raspberry pi
