@@ -1,11 +1,11 @@
 version: '3'
 
 services:
-  bitwarden:
-    image: bitwardenrs/server:raspberry
+  vaultwarden:
+    image: vaultwarden/server:latest
     restart: always
     volumes:
-      - ./bw-data:/data
+      - ./vw-data:/data
     environment:
       WEBSOCKET_ENABLED: ${WEBSOCKET_ENABLED}
       SIGNUPS_ALLOWED: ${SIGNUPS_ALLOWED}

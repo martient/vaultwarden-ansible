@@ -4,9 +4,9 @@
     src: docker-compose.yaml
     dest: .
 
-- name: "Copy bw-data"
+- name: "Copy vw-data"
   copy:
-    src: bw-data
+    src: vw-data
     dest: .
 
 - name: "Copy caddy-data"
@@ -19,6 +19,6 @@
     project_src: .
     state: absent
 
-- name: "Create and start Bitwarden RS services"
+- name: "Create and start vaultwarden services"
   docker_compose:
     project_src: .
