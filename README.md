@@ -1,5 +1,11 @@
-# Bitwarden RS Ansible
-## Ansible deployement for bitwarden rs on raspberry pi
+# Vaultwarden Ansible
+
+## Articles
+
+[Install guide](https://martient.medium.com/how-to-deploy-bitwarden-on-raspberry-pi-78444a8f03fc)
+[Migration](https://martient.medium.com/migrate-from-bitwarden-rs-to-vaultwarden-199aeb6927a3)
+
+## Ansible deployement for vaultwarden rs on raspberry pi
 
 ### Required
 
@@ -11,7 +17,7 @@
 
 #### SSH key
 
-For ansible you need to give to your raspberry pi your ssh key, the easy way is 
+For ansible you need to give to your raspberry pi your ssh key, the easy way is
 
 ``` bash
 ssh-copy-id pi@RASP_LOCAL_IP
@@ -23,7 +29,7 @@ after that, you can quit your rasp and try to connect to if he doesn't request a
 
 Open the file named 'host' and edit the line where '<---' is
 
-```
+``` shell
 all:
     vars:
         ansible_python_interpreter: /usr/bin/python3
@@ -43,10 +49,11 @@ all:
 #### docker-compose
 
 Open the file named '.env' and edit the line where '<---' is
- 
+
 You have to edit for bitwarden
-```
-#Bitewardemrs
+
+``` shell
+#Vaultwarden
 WEBSOCKET_ENABLED=true
 SIGNUPS_ALLOWED=true
 ADMIN_TOKEN=DEFINE-YOUR-PERSONNAL-ADMIN-TOKEN <---
