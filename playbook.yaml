@@ -5,7 +5,7 @@
     - setup
 
 - hosts: bitwarden
-  name: "Setup bitwarden"
+  name: "Setup vaultwarden"
   become: yes
   roles:
-    - bitwardenrs
+    - vaultwarden
