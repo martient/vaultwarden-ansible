@@ -2,8 +2,8 @@
 
 ## Articles
 
-[Install guide](https://martient.medium.com/how-to-deploy-bitwarden-on-raspberry-pi-78444a8f03fc)
-[Migration](https://martient.medium.com/migrate-from-bitwarden-rs-to-vaultwarden-199aeb6927a3)
+[Install guide](https://martient.com/how-to-deploy-vaultwarden-on-raspberry-pi/)
+[Migration](https://martient.com/migrate-from-bitwarden_rs-to-vaultwarden/)
 
 ## Ansible deployement for vaultwarden rs on raspberry pi
 
